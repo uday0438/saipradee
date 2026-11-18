@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Clock, Expand, MapPin } from 'lucide-react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import { BananaLeafLotusCrown, ResilientWeddingImage } from './TempleOrnaments';
 
 interface EventsSectionProps {
@@ -9,8 +9,9 @@ interface EventsSectionProps {
 }
 
 export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenPhoto }) => {
+  const { data, isTelugu } = useLanguage();
   const [selectedId, setSelectedId] = useState<string>('wedding');
-  const events = weddingData.events;
+  const events = data.events;
   const visibleEvents = events.filter((e) => e.id === selectedId);
 
   return (
@@ -19,10 +20,10 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenPhoto }) => 
       aria-label="Wedding Celebrations"
       className="relative w-full overflow-hidden bg-[#FFF8E8] pt-6 sm:pt-10 pb-14 sm:pb-20"
     >
-      {/* Subtle lead text matching 00:10 ("On the following events") */}
+      {/* Subtle lead text matching 00:10 */}
       <div className="text-center px-4 mb-2">
         <p className="font-serif-body italic text-base sm:text-xl text-[#8C1423]">
-          On the following auspicious events
+          {isTelugu ? 'కల్యాణ శుభకార్య వివరాలు' : 'On the following auspicious events'}
         </p>
       </div>
 
@@ -130,7 +131,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenPhoto }) => 
                       className="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#087BC1] text-white font-display text-xs tracking-wider uppercase shadow hover:bg-[#06639C] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087BC1]"
                     >
                       <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>View Location</span>
+                      <span>{isTelugu ? 'స్థానం చూడండి' : 'View Location'}</span>
                     </a>
                   </div>
                 </motion.article>

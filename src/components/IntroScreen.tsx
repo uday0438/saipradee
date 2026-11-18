@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ChevronDown, Sparkles } from 'lucide-react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import { GoldParticles, ResilientWeddingImage } from './TempleOrnaments';
 
 interface IntroScreenProps {
@@ -9,7 +8,8 @@ interface IntroScreenProps {
 }
 
 export const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
-  const { couple, artwork } = weddingData;
+  const { data, t } = useLanguage();
+  const { couple, artwork } = data;
   const stageRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -55,7 +55,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
           className="relative z-20 flex flex-col items-center text-center px-6 -mt-14 sm:-mt-20 max-w-2xl"
         >
           <p className="font-display text-xs sm:text-sm tracking-[0.34em] uppercase text-[#FFF8E8]/90 mb-4">
-            A Wedding Invitation
+            {t('aWeddingInvitation')}
           </p>
 
           <h1 className="font-display text-5xl sm:text-7xl font-semibold tracking-[0.16em] text-white drop-shadow-[0_3px_14px_rgba(8,50,108,0.35)]">
@@ -63,7 +63,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
           </h1>
 
           <span className="my-2 font-display text-xs sm:text-sm tracking-[0.36em] uppercase text-[#FFF1D1]">
-            WEDS
+            {t('weds')}
           </span>
 
           <h2 className="font-display text-5xl sm:text-7xl font-semibold tracking-[0.16em] text-white drop-shadow-[0_3px_14px_rgba(8,50,108,0.35)]">
@@ -71,7 +71,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
           </h2>
 
           <p className="mt-4 font-display text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FFF8E8]/90">
-            Are Getting Married · With the blessings of our families
+            {t('areGettingMarried')}
           </p>
         </motion.div>
 

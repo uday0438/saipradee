@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface SpecialPhotosModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const SPECIAL_PHOTOS = [
-  {
-    id: 'vivaha-ceremony',
-    title: 'Sacred Vivaha Ceremony',
-    subtitle: 'Pradeep & Sai Sree at the Sacred Fire',
-    src: '/special/special_01.jpg',
-    alt: 'Pradeep in ivory sherwani and turban with Sai Sree in red bridal lehenga and floral garlands at the wedding mandap',
-  },
-  {
-    id: 'reception-elegance',
-    title: 'Grand Reception Portrait',
-    subtitle: 'Pradeep & Sai Sree in Royal Attire',
-    src: '/special/special_02.jpg',
-    alt: 'Pradeep in black three-piece suit with Sai Sree in pink silk saree on ornate golden sofa with rose garlands',
-  },
-];
-
 export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, onClose }) => {
+  const { isTelugu } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const photos = [
+    {
+      id: 'vivaha-ceremony',
+      title: isTelugu ? 'పవిత్ర వివాహ మహోత్సవం' : 'Sacred Vivaha Ceremony',
+      subtitle: isTelugu ? 'హోమ గుండం వద్ద ప్రదీప్ & సాయి శ్రీ' : 'Pradeep & Sai Sree at the Sacred Fire',
+      src: '/special/special_01.jpg',
+      alt: 'Wedding ceremony portrait',
+    },
+    {
+      id: 'reception-elegance',
+      title: isTelugu ? 'రిసెప్షన్ వేడుక' : 'Grand Reception Portrait',
+      subtitle: isTelugu ? 'రాచరిక వేషధారణలో ప్రదీప్ & సాయి శ్రీ' : 'Pradeep & Sai Sree in Royal Attire',
+      src: '/special/special_02.jpg',
+      alt: 'Reception ceremony portrait',
+    },
+  ];
 
   // Lock body scroll while open
   useEffect(() => {
@@ -45,16 +47,16 @@ export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, 
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') setCurrentIndex((prev) => (prev + 1) % SPECIAL_PHOTOS.length);
-      if (e.key === 'ArrowLeft') setCurrentIndex((prev) => (prev - 1 + SPECIAL_PHOTOS.length) % SPECIAL_PHOTOS.length);
+      if (e.key === 'ArrowRight') setCurrentIndex((prev) => (prev + 1) % photos.length);
+      if (e.key === 'ArrowLeft') setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, photos.length]);
 
   if (!isOpen) return null;
 
-  const currentPhoto = SPECIAL_PHOTOS[currentIndex];
+  const currentPhoto = photos[currentIndex];
 
   return (
     <AnimatePresence>
@@ -152,7 +154,7 @@ export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, 
 
           {/* Bottom Tabs / Selector Bar */}
           <div className="flex items-center justify-center gap-2 sm:gap-3 px-4 py-2.5 bg-[#FFF8E8] border-t border-[#D6A64B]/40">
-            {SPECIAL_PHOTOS.map((photo, idx) => (
+            {photos.map((photo, idx) => (
               <button
                 key={photo.id}
                 type="button"
@@ -163,7 +165,7 @@ export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, 
                     : 'bg-[#FFF1D1] text-[#650C18] border border-[#D6A64B]/40 hover:bg-[#D6A64B]/20'
                 }`}
               >
-                <span>{idx === 0 ? '💍 Wedding' : '👑 Reception'}</span>
+                <span>{idx === 0 ? (isTelugu ? '💍 వివాహం' : '💍 Wedding') : (isTelugu ? '👑 రిసెప్షన్' : '👑 Reception')}</span>
               </button>
             ))}
           </div>

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
-import { Sparkles } from 'lucide-react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import { Countdown } from './Countdown';
-import { GoldParticles, ResilientWeddingImage } from './TempleOrnaments';
+import { GoldParticles } from './TempleOrnaments';
 
 interface CountdownGallerySceneProps {
   onOpenGallery: (index: number) => void;
 }
 
 export const CountdownGalleryScene: React.FC<CountdownGallerySceneProps> = () => {
-  const { weddingTargetIso } = weddingData;
+  const { data, isTelugu } = useLanguage();
+  const { weddingTargetIso } = data;
 
   return (
     <section
@@ -46,7 +46,7 @@ export const CountdownGalleryScene: React.FC<CountdownGallerySceneProps> = () =>
           transition={{ duration: 0.7 }}
           className="font-script text-4xl sm:text-5xl text-[#8C1423] mb-5"
         >
-          Counting the Days
+          {isTelugu ? 'శుభ ముహూర్తానికి మిగిలిన సమయం' : 'Counting the Days'}
         </motion.h2>
 
         <Countdown targetIso={weddingTargetIso} />

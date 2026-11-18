@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import {
   GoldParticles,
   MarigoldToranGarland,
@@ -9,7 +9,8 @@ import {
 } from './TempleOrnaments';
 
 export const InvitationCard: React.FC = () => {
-  const { couple, sacredInvocation, invitationLead, invitationMessage } = weddingData;
+  const { data, t } = useLanguage();
+  const { couple, sacredInvocation, invitationLead, invitationMessage } = data;
 
   return (
     <section
@@ -53,7 +54,7 @@ export const InvitationCard: React.FC = () => {
               </p>
 
               <h2 className="mt-1 font-script text-5xl sm:text-6xl gold-shimmer-text leading-tight">
-                Invite
+                {t('invite')}
               </h2>
 
               <p className="mt-2 font-serif-body text-[15px] sm:text-lg text-[#4A0812] leading-relaxed max-w-md">
@@ -98,8 +99,8 @@ export const InvitationCard: React.FC = () => {
                         strokeWidth="3.2"
                       />
                     </svg>
-                    <span className="absolute inset-0 flex items-center justify-center -translate-y-1 font-script text-2xl sm:text-3xl text-[#F2D27A] drop-shadow-md font-semibold tracking-wider">
-                      weds
+                    <span className="absolute inset-0 flex items-center justify-center -translate-y-1 font-script text-xl sm:text-2xl text-[#F2D27A] drop-shadow-md font-semibold tracking-wider">
+                      {t('weds')}
                     </span>
                   </div>
                 </div>

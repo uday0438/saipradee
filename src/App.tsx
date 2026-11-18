@@ -19,8 +19,11 @@ import { MusicPlayer } from './components/MusicPlayer';
 import { GalleryLightbox } from './components/Gallery';
 import { MemoriesPlayer } from './components/MemoriesPlayer';
 import { SpecialPhotosModal } from './components/SpecialPhotosModal';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { LanguageToggle } from './components/LanguageToggle';
 
-export default function App() {
+function WeddingAppContent() {
+  const { data } = useLanguage();
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [autoScrolling, setAutoScrolling] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -52,20 +55,20 @@ export default function App() {
   const handleEnterInvitation = useCallback(async () => {
     scrollToChapter('sacred-invite');
     if (!musicPlaying) {
-      const started = await weddingAudio.start(weddingData.musicTrackUrl);
+      const started = await weddingAudio.start(data.musicTrackUrl);
       if (started) setMusicPlaying(true);
     }
-  }, [musicPlaying, scrollToChapter]);
+  }, [data.musicTrackUrl, musicPlaying, scrollToChapter]);
 
   const handleToggleMusic = useCallback(async () => {
     if (musicPlaying) {
       weddingAudio.stop();
       setMusicPlaying(false);
     } else {
-      const started = await weddingAudio.start(weddingData.musicTrackUrl);
+      const started = await weddingAudio.start(data.musicTrackUrl);
       setMusicPlaying(started);
     }
-  }, [musicPlaying]);
+  }, [data.musicTrackUrl, musicPlaying]);
 
   const handleReplay = useCallback(() => {
     setAutoScrolling(false);
@@ -77,8 +80,8 @@ export default function App() {
     if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
       try {
         await navigator.share({
-          title: weddingData.shareTitle,
-          text: weddingData.shareText,
+          title: data.shareTitle,
+          text: data.shareText,
           url: shareUrl,
         });
         return;
@@ -88,17 +91,17 @@ export default function App() {
     }
 
     try {
-      await navigator.clipboard.writeText(`${weddingData.shareText} ${shareUrl}`);
+      await navigator.clipboard.writeText(`${data.shareText} ${shareUrl}`);
       showToast('Invitation link copied to share');
     } catch {
       showToast('Copy the URL from your address bar to share');
     }
-  }, [showToast]);
+  }, [data.shareText, data.shareTitle, showToast]);
 
   const openPhotoBySrc = useCallback((src: string) => {
-    const foundIndex = weddingData.gallery.findIndex((g) => g.src === src);
+    const foundIndex = data.gallery.findIndex((g) => g.src === src);
     setLightboxIndex(foundIndex >= 0 ? foundIndex : 0);
-  }, []);
+  }, [data.gallery]);
 
   // Optional ?autostart=1 scrolls straight to sacred-invite on load for verification
   useEffect(() => {
@@ -153,6 +156,9 @@ export default function App() {
 
   return (
     <main className="relative w-full min-h-screen bg-[#FFF8E8] overflow-x-clip">
+      {/* Top-Right Language Switcher: English | తెలుగు */}
+      <LanguageToggle />
+
       {/* Floating Bottom-Right Control Bar: 3 Symbols Only (Play/Pause Film, Music On/Off, Share), reduced by 20% */}
       <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 rounded-full bg-[#1D1819]/90 backdrop-blur-md border border-[#D6A64B]/80 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
         {/* 1. Play / Pause Auto-scroll Symbol */}
@@ -189,7 +195,7 @@ export default function App() {
       <InvitationCard />
       <EventsSection onOpenPhoto={openPhotoBySrc} />
       <TempleCoupleScene />
-      <CoupleSection onOpenPortrait={() => openPhotoBySrc(weddingData.couple.portraitImage)} />
+      <CoupleSection onOpenPortrait={() => openPhotoBySrc(data.couple.portraitImage)} />
       <GrandTempleShowcaseScene />
       <WeddingDetails onShare={handleShare} />
       <CountdownGalleryScene onOpenGallery={(idx) => setLightboxIndex(idx)} />
@@ -206,7 +212,7 @@ export default function App() {
 
       {/* Photo Lightbox Modal */}
       <GalleryLightbox
-        photos={weddingData.gallery}
+        photos={data.gallery}
         activeIndex={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onSelect={(idx) => setLightboxIndex(idx)}
@@ -228,5 +234,13 @@ export default function App() {
         )}
       </AnimatePresence>
     </main>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <WeddingAppContent />
+    </LanguageProvider>
   );
 }

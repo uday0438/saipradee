@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Expand } from 'lucide-react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import { GoldParticles, ResilientWeddingImage } from './TempleOrnaments';
 
 interface CoupleSectionProps {
@@ -9,7 +9,8 @@ interface CoupleSectionProps {
 }
 
 export const CoupleSection: React.FC<CoupleSectionProps> = ({ onOpenPortrait }) => {
-  const { couple } = weddingData;
+  const { data, isTelugu } = useLanguage();
+  const { couple } = data;
 
   return (
     <section
@@ -19,13 +20,13 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ onOpenPortrait }) 
     >
       <GoldParticles count={12} tone="gold" />
 
-      {/* Deep Maroon Scalloped Header matching 00:21 - 00:23 ("Meet the Bride & Groom") */}
+      {/* Deep Maroon Scalloped Header */}
       <div className="relative z-10 shrink-0 bg-gradient-to-b from-[#650C18] to-[#8C1423] py-8 sm:py-10 px-4 text-center border-y-4 border-[#D6A64B] shadow-lg">
         <p className="font-display text-[10px] sm:text-xs tracking-[0.28em] uppercase text-[#FFF1D1]/85">
-          Two Families · One Sacred Bond
+          {isTelugu ? 'రెండు కుటుంబాలు · ఒకే పవిత్ర బంధం' : 'Two Families · One Sacred Bond'}
         </p>
         <h2 className="font-script text-4xl sm:text-5xl text-[#F2D27A] mt-0.5 drop-shadow">
-          Meet the Bride &amp; Groom
+          {isTelugu ? 'వధూవరుల పరిచయం' : 'Meet the Bride & Groom'}
         </h2>
       </div>
 
@@ -112,13 +113,14 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ onOpenPortrait }) 
               </div>
               <div className="flex-1">
                 <p className="font-display text-[11px] tracking-[0.24em] uppercase text-[#8C1423]">
-                  The Bride
+                  {isTelugu ? 'వధువు' : 'The Bride'}
                 </p>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold tracking-wider text-[#650C18] mt-0.5">
                   {couple.brideFull}
                 </h3>
                 <p className="mt-1 font-serif-body text-sm sm:text-base text-[#4A0812]">
-                  Daughter of <span className="font-semibold">{couple.brideParents}</span>
+                  {isTelugu ? 'కుమార్తె: ' : 'Daughter of '}
+                  <span className="font-semibold">{couple.brideParents}</span>
                 </p>
               </div>
             </div>
@@ -133,13 +135,14 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ onOpenPortrait }) 
               </div>
               <div className="flex-1">
                 <p className="font-display text-[11px] tracking-[0.24em] uppercase text-[#087BC1]">
-                  The Groom
+                  {isTelugu ? 'వరుడు' : 'The Groom'}
                 </p>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold tracking-wider text-[#650C18] mt-0.5">
                   {couple.groomFull}
                 </h3>
                 <p className="mt-1 font-serif-body text-sm sm:text-base text-[#4A0812]">
-                  Son of <span className="font-semibold">{couple.groomParents}</span>
+                  {isTelugu ? 'కుమారుడు: ' : 'Son of '}
+                  <span className="font-semibold">{couple.groomParents}</span>
                 </p>
               </div>
             </div>

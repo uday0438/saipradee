@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { MapPin, MessageCircle, Share2 } from 'lucide-react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import { buildWhatsAppUrl } from '../utils/weddingUtils';
 import { GoldParticles, GoldenTempleSkyline, HangingBellsCanopy } from './TempleOrnaments';
 
@@ -10,7 +10,8 @@ interface WeddingDetailsProps {
 }
 
 export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ onShare }) => {
-  const { weddingCeremony, reception, whatsappNumber, rsvpMessage } = weddingData;
+  const { data, isTelugu } = useLanguage();
+  const { weddingCeremony, reception, whatsappNumber, rsvpMessage } = data;
   const whatsappUrl = buildWhatsAppUrl(rsvpMessage, whatsappNumber);
 
   return (
@@ -22,7 +23,7 @@ export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ onShare }) => {
       <GoldParticles count={16} tone="gold" />
       <GoldenTempleSkyline />
 
-      {/* Top Scalloped Maroon Canopy with Hanging Golden Bells matching 00:28 - 00:31 */}
+      {/* Top Scalloped Maroon Canopy with Hanging Golden Bells */}
       <div className="relative z-20 shrink-0">
         <HangingBellsCanopy />
       </div>
@@ -40,10 +41,10 @@ export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ onShare }) => {
 
           <div className="relative z-10">
             <h2 className="font-script text-4xl sm:text-5xl text-[#8C1423]">
-              Will You Join Us?
+              {isTelugu ? 'మా వివాహ మహోత్సవానికి విచ్చేయండి' : 'Will You Join Us?'}
             </h2>
             <p className="font-display text-[10px] sm:text-xs tracking-[0.26em] uppercase text-[#8F621B] mt-1">
-              Wedding Ceremony &amp; Reception Details
+              {isTelugu ? 'ముహూర్తం & విందు సమగ్ర వివరాలు' : 'Wedding Ceremony & Reception Details'}
             </p>
 
             {/* Two-Column Ceremony + Reception Schedule */}
@@ -55,13 +56,13 @@ export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ onShare }) => {
                 </h3>
                 <div className="my-2 h-px w-20 mx-auto bg-[#D6A64B]" />
                 <p className="font-serif-body text-sm sm:text-base text-[#4A0812]">
-                  <span className="font-semibold">Date:</span> {weddingCeremony.date}
+                  <span className="font-semibold">{isTelugu ? 'తేదీ:' : 'Date:'}</span> {weddingCeremony.date}
                 </p>
                 <p className="font-serif-body text-sm sm:text-base text-[#4A0812] mt-0.5">
-                  <span className="font-semibold">Time:</span> {weddingCeremony.time}
+                  <span className="font-semibold">{isTelugu ? 'సమయం:' : 'Time:'}</span> {weddingCeremony.time}
                 </p>
                 <p className="font-serif-body text-sm sm:text-base text-[#4A0812] mt-0.5">
-                  <span className="font-semibold">Venue:</span> {weddingCeremony.venue}
+                  <span className="font-semibold">{isTelugu ? 'వేదిక:' : 'Venue:'}</span> {weddingCeremony.venue}
                 </p>
               </div>
 
@@ -72,13 +73,13 @@ export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ onShare }) => {
                 </h3>
                 <div className="my-2 h-px w-20 mx-auto bg-[#D6A64B]" />
                 <p className="font-serif-body text-sm sm:text-base text-[#4A0812]">
-                  <span className="font-semibold">Date:</span> {reception.date}
+                  <span className="font-semibold">{isTelugu ? 'తేదీ:' : 'Date:'}</span> {reception.date}
                 </p>
                 <p className="font-serif-body text-sm sm:text-base text-[#4A0812] mt-0.5">
-                  <span className="font-semibold">Time:</span> {reception.time}
+                  <span className="font-semibold">{isTelugu ? 'సమయం:' : 'Time:'}</span> {reception.time}
                 </p>
                 <p className="font-serif-body text-sm sm:text-base text-[#4A0812] mt-0.5">
-                  <span className="font-semibold">Venue:</span> {reception.venue}
+                  <span className="font-semibold">{isTelugu ? 'వేదిక:' : 'Venue:'}</span> {reception.venue}
                 </p>
               </div>
             </div>
@@ -92,26 +93,16 @@ export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ onShare }) => {
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#087BC1] text-white font-display text-xs tracking-wider uppercase shadow hover:bg-[#06639C] transition-colors whitespace-nowrap shrink-0"
               >
                 <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>View Location</span>
-              </a>
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#650C18] text-[#FFF8E8] border border-[#D6A64B] font-display text-xs tracking-wider uppercase shadow hover:bg-[#8C1423] transition-colors whitespace-nowrap shrink-0"
-              >
-                <MessageCircle className="w-3.5 h-3.5 text-[#F2D27A]" aria-hidden="true" />
-                <span>RSVP on WhatsApp</span>
+                <span>{isTelugu ? 'స్థానం చూడండి' : 'View Location'}</span>
               </a>
 
               <button
                 type="button"
                 onClick={onShare}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FFF1D1] text-[#650C18] border border-[#D6A64B] font-display text-xs tracking-wider uppercase hover:bg-[#F5DF9E] transition-colors cursor-pointer whitespace-nowrap shrink-0"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#650C18] text-[#FFF8E8] font-display text-xs tracking-wider uppercase shadow hover:bg-[#8C1423] border border-[#D6A64B] transition-colors cursor-pointer whitespace-nowrap shrink-0"
               >
-                <Share2 className="w-3.5 h-3.5 text-[#8C1423]" aria-hidden="true" />
-                <span>Share Invite</span>
+                <Share2 className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>{isTelugu ? 'ఆహ్వానం పంపండి' : 'Share Invitation'}</span>
               </button>
             </div>
           </div>

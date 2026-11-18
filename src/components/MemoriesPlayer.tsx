@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, Pause, Play, Heart } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { weddingAudio } from '../utils/carnaticAudio';
 import { weddingData } from '../data/weddingData';
 
@@ -23,6 +24,7 @@ interface FallingLeaf {
 const LOVE_LEAF_SYMBOLS = ['❤️', '💖', '💕', '🌸', '🍃', '🍁', '✨', '🌹', '🤍'];
 
 export const MemoriesPlayer: React.FC<MemoriesPlayerProps> = ({ isOpen, onClose }) => {
+  const { isTelugu } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const images = weddingData.memories;
@@ -156,10 +158,10 @@ export const MemoriesPlayer: React.FC<MemoriesPlayerProps> = ({ isOpen, onClose 
           <div className="flex items-center gap-2 text-[#F2D27A]">
             <Heart className="w-5 h-5 fill-[#E74C3C] text-[#E74C3C] animate-pulse" />
             <span className="font-script text-2xl sm:text-3xl tracking-wide text-[#FFF8E8]">
-              Pradeep &amp; Sai Sree
+              {isTelugu ? 'ప్రదీప్ & సాయి శ్రీ' : 'Pradeep & Sai Sree'}
             </span>
             <span className="hidden sm:inline text-xs font-display tracking-widest text-[#D6A64B] uppercase ml-2">
-              · Cherished Memories
+              {isTelugu ? '· మధుర జ్ఞాపకాలు' : '· Cherished Memories'}
             </span>
           </div>
 

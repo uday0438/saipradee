@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Heart } from 'lucide-react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import { GoldParticles, ResilientWeddingImage } from './TempleOrnaments';
 
 interface ClosingScreenProps {
@@ -12,7 +12,8 @@ interface ClosingScreenProps {
 }
 
 export const ClosingScreen: React.FC<ClosingScreenProps> = ({ onOpenMemories, onOpenSpecial }) => {
-  const { couple, closingBlessing, artwork } = weddingData;
+  const { data, isTelugu } = useLanguage();
+  const { couple, closingBlessing, artwork } = data;
 
   return (
     <section
@@ -43,7 +44,7 @@ export const ClosingScreen: React.FC<ClosingScreenProps> = ({ onOpenMemories, on
           className="w-full bg-[#FFF8E8]/90 backdrop-blur-sm border-2 border-[#D6A64B] rounded-2xl px-6 py-6 sm:px-9 sm:py-7 text-center shadow-[0_18px_50px_rgba(101,12,24,0.18)]"
         >
           <p className="font-display text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#8C1423]">
-            Shubham Bhavatu
+            {isTelugu ? 'శుభం భవతు' : 'Shubham Bhavatu'}
           </p>
 
           <p className="mt-3 font-serif-body text-base sm:text-xl text-[#4A0812] leading-relaxed">
@@ -61,7 +62,7 @@ export const ClosingScreen: React.FC<ClosingScreenProps> = ({ onOpenMemories, on
           </div>
 
           <p className="font-script text-2xl sm:text-3xl text-[#8F621B]">
-            With love and regards, Our Families
+            {isTelugu ? 'ప్రేమతో మరియు గౌరవంతో, మా కుటుంబాలు' : 'With love and regards, Our Families'}
           </p>
 
           {/* Action buttons: "See Love Memories🫶" + "👀" */}
@@ -72,7 +73,9 @@ export const ClosingScreen: React.FC<ClosingScreenProps> = ({ onOpenMemories, on
               aria-label="See Love Memories🫶"
               className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-full bg-gradient-to-r from-[#650C18] via-[#8C1423] to-[#650C18] text-[#FFF8E8] border-2 border-[#D6A64B] font-display text-sm sm:text-base font-semibold tracking-wide shadow-[0_10px_28px_rgba(101,12,24,0.35)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
             >
-              <span className="gold-shimmer-text font-bold">See Love Memories🫶</span>
+              <span className="gold-shimmer-text font-bold">
+                {isTelugu ? 'మధుర జ్ఞాపకాలు చూడండి🫶' : 'See Love Memories🫶'}
+              </span>
             </button>
 
             {/* 👀 Button */}
@@ -89,10 +92,10 @@ export const ClosingScreen: React.FC<ClosingScreenProps> = ({ onOpenMemories, on
         </motion.div>
       </div>
 
-      {/* Made by Urs Uday at the bottom left corner so bottom right is free for controls */}
+      {/* Made by Urs Uday at the bottom left corner */}
       <div className="absolute bottom-3 left-4 z-30 pointer-events-none select-none">
         <p className="font-serif-body text-[11px] sm:text-xs tracking-wider text-[#650C18] bg-[#FFF8E8]/85 px-3 py-1 rounded-full border border-[#D6A64B]/60 shadow-xs backdrop-blur-sm">
-          made by urs uday
+          {isTelugu ? 'రూపకల్పన: ఉదయ్' : 'made by urs uday'}
         </p>
       </div>
     </section>

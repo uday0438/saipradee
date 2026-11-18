@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { weddingData } from '../data/weddingData';
+import { useLanguage } from '../context/LanguageContext';
 import {
   GoldParticles,
   LineArtGopuram,
@@ -9,7 +9,8 @@ import {
 } from './TempleOrnaments';
 
 export const TempleCoupleScene: React.FC = () => {
-  const { artwork, couple } = weddingData;
+  const { data, isTelugu } = useLanguage();
+  const { artwork, couple } = data;
   const sectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -63,7 +64,7 @@ export const TempleCoupleScene: React.FC = () => {
         </div>
 
         <p className="mt-4 font-display text-xs sm:text-sm tracking-[0.22em] uppercase text-[#650C18] text-center">
-          Two Souls · One Sacred Garland · Eternal Blessings
+          {isTelugu ? 'రెండు హృదయాలు · ఒకే కల్యాణ మాల · నిత్య దీవెనలు' : 'Two Souls · One Sacred Garland · Eternal Blessings'}
         </p>
       </motion.div>
     </section>
@@ -71,7 +72,8 @@ export const TempleCoupleScene: React.FC = () => {
 };
 
 export const GrandTempleShowcaseScene: React.FC = () => {
-  const { templeBannerTitle, templeBannerSubtitle } = weddingData;
+  const { data } = useLanguage();
+  const { templeBannerTitle, templeBannerSubtitle } = data;
 
   return (
     <section

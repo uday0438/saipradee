@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
 import { calculateCountdown, padTwoDigits } from '../utils/weddingUtils';
 
 interface CountdownProps {
@@ -7,6 +8,7 @@ interface CountdownProps {
 }
 
 export const Countdown: React.FC<CountdownProps> = ({ targetIso }) => {
+  const { isTelugu } = useLanguage();
   const [timeLeft, setTimeLeft] = useState(() => calculateCountdown(targetIso));
 
   // High-precision live update: polls Date.now() every 250ms so second ticks are instantaneous
@@ -19,10 +21,10 @@ export const Countdown: React.FC<CountdownProps> = ({ targetIso }) => {
   }, [targetIso]);
 
   const units = [
-    { label: 'Days', value: padTwoDigits(timeLeft.days) },
-    { label: 'Hours', value: padTwoDigits(timeLeft.hours) },
-    { label: 'Minutes', value: padTwoDigits(timeLeft.minutes) },
-    { label: 'Seconds', value: padTwoDigits(timeLeft.seconds) },
+    { label: isTelugu ? 'రోజులు' : 'Days', value: padTwoDigits(timeLeft.days) },
+    { label: isTelugu ? 'గంటలు' : 'Hours', value: padTwoDigits(timeLeft.hours) },
+    { label: isTelugu ? 'నిమిషాలు' : 'Minutes', value: padTwoDigits(timeLeft.minutes) },
+    { label: isTelugu ? 'సెకన్లు' : 'Seconds', value: padTwoDigits(timeLeft.seconds) },
   ];
 
   return (
@@ -34,7 +36,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetIso }) => {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8C1423]" />
         </span>
         <span className="font-display text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[#650C18] font-semibold">
-          Real-Time Live Countdown
+          {isTelugu ? 'లైవ్ కౌంట్‌డౌన్' : 'Real-Time Live Countdown'}
         </span>
       </div>
 
