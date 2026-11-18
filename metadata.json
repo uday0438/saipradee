@@ -1,0 +1,6 @@
+{
+  "name": "Pradeep & Sai Sree — South Indian Temple Wedding Invitation",
+  "description": "A cinematic, full-screen South Indian temple wedding invitation celebrating the union of Pradeep & Sai Sree at Gandi Anjaneya Swamy Temple.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
