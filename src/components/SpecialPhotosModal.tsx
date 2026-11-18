@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import weddingMandapImg from '../assets/images/wedding_mandap_couple.jpg';
+import receptionSofaImg from '../assets/images/reception_sofa_couple.jpg';
 
 interface SpecialPhotosModalProps {
   isOpen: boolean;
@@ -17,15 +19,15 @@ export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, 
       id: 'vivaha-ceremony',
       title: isTelugu ? 'పవిత్ర వివాహ మహోత్సవం' : 'Sacred Vivaha Ceremony',
       subtitle: isTelugu ? 'హోమ గుండం వద్ద ప్రదీప్ & సాయి శ్రీ' : 'Pradeep & Sai Sree at the Sacred Fire',
-      src: '/special/special_01.jpg',
-      alt: 'Wedding ceremony portrait',
+      src: weddingMandapImg,
+      alt: 'Wedding ceremony portrait of Pradeep and Sai Sree',
     },
     {
       id: 'reception-elegance',
       title: isTelugu ? 'రిసెప్షన్ వేడుక' : 'Grand Reception Portrait',
       subtitle: isTelugu ? 'రాచరిక వేషధారణలో ప్రదీప్ & సాయి శ్రీ' : 'Pradeep & Sai Sree in Royal Attire',
-      src: '/special/special_02.jpg',
-      alt: 'Reception ceremony portrait',
+      src: receptionSofaImg,
+      alt: 'Reception ceremony portrait of Pradeep and Sai Sree',
     },
   ];
 

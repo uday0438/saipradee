@@ -119,7 +119,7 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ onOpenPortrait }) 
                   {couple.brideFull}
                 </h3>
                 <p className="mt-1 font-serif-body text-sm sm:text-base text-[#4A0812]">
-                  {isTelugu ? 'కుమార్తె: ' : 'Daughter of '}
+                  {isTelugu ? 'కుమార్తె: ' : 'D/o '}
                   <span className="font-semibold">{couple.brideParents}</span>
                 </p>
               </div>

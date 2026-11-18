@@ -7,7 +7,7 @@ export const teluguWeddingData: WeddingData = {
   couple: {
     brideShort: 'సాయి శ్రీ',
     brideFull: 'సాయి శ్రీ',
-    brideParents: 'శ్రీమతి లక్ష్మీ దేవి & శ్రీ వెంకట రావు',
+    brideParents: 'శ్రీమతి సురేంద్రమ్మ & శ్రీ అప్పలరాజు',
     brideFace: '/src/assets/images/bride_face.jpg?v=2',
     bridePhoto: '/src/assets/images/sai_sree_bride.jpg',
     groomShort: 'ప్రదీప్',
@@ -61,7 +61,7 @@ export const teluguWeddingData: WeddingData = {
       venue: 'గండి ఆంజనేయ స్వామి దేవస్థానం',
       description:
         'వేద మంత్రోచ్ఛారణలు, నాదస్వర మంగళ ధ్వనులు, కాశీ యాత్ర, జీలకర్ర-బెల్లం మరియు పవిత్ర మాంగళ్య ధారణ మహోత్సవం.',
-      image: '/src/assets/images/wedding_ceremony_hands.jpg',
+      image: '/src/assets/images/wedding_mandap_couple.jpg',
       imageAlt: 'వధూవరుల హస్తమేళాపం మరియు పవిత్ర మాంగళ్య ధారణం',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gandi+Anjaneya+Swamy+Temple',
       accentColor: '#8C1423',
@@ -76,7 +76,7 @@ export const teluguWeddingData: WeddingData = {
       venue: 'తరిమెల (స్వగృహం)',
       description:
         'నూతన దంపతులను మనసారా ఆశీర్వదించి, సాంప్రదాయ అరటి ఆకు విందును ఆరగించి మమ్మల్ని ఆనందింపజేయవలసిందిగా కోరుచున్నాము.',
-      image: '/src/assets/images/celebration_wedding_mandapam_1794976460864.jpg',
+      image: '/src/assets/images/reception_sofa_couple.jpg',
       imageAlt: 'స్వగృహంలో సాంప్రదాయ ఆశీర్వాద విందు వేదిక',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Tarimela+Village+Andhra+Pradesh',
       accentColor: '#B88635',

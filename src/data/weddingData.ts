@@ -77,7 +77,7 @@ export const weddingData: WeddingData = {
   couple: {
     brideShort: 'SAI SREE',
     brideFull: 'Sai Sree',
-    brideParents: 'Smt. Lakshmi Devi & Sri Venkata Rao',
+    brideParents: 'Appalaraju & Surendramma',
     brideFace: '/src/assets/images/bride_face.jpg?v=2',
     bridePhoto: '/src/assets/images/sai_sree_bride.jpg',
     groomShort: 'PRADEEP',
@@ -135,8 +135,8 @@ export const weddingData: WeddingData = {
       venue: 'Gandi Anjaneya Swamy Temple',
       description:
         'Vedic hymns, Nadaswaram melodies, Kashi Yatra, Jeelakarra Bellam, and the sacred tying of the Mangalsutra.',
-      image: '/src/assets/images/wedding_ceremony_hands.jpg',
-      imageAlt: 'Sacred Hasta Melap and Mangalya Dharanam ritual with bride and groom joined hands',
+      image: '/src/assets/images/wedding_mandap_couple.jpg',
+      imageAlt: 'Sacred Vivaha ceremony of Pradeep and Sai Sree at the holy mandapam',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gandi+Anjaneya+Swamy+Temple',
       accentColor: '#8C1423',
       backdropTint: '#FFF1D1',
@@ -150,8 +150,8 @@ export const weddingData: WeddingData = {
       venue: 'Tarimela (At Home)',
       description:
         'An afternoon gathering with traditional banana-leaf feast and heartfelt blessings for the newlyweds.',
-      image: '/src/assets/images/bride_groom_portrait_1794976459288.jpg',
-      imageAlt: 'Newlywed South Indian couple smiling together under the temple mandapam',
+      image: '/src/assets/images/reception_sofa_couple.jpg',
+      imageAlt: 'Pradeep and Sai Sree in royal attire on golden sofa for the wedding reception',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Tarimela+Village+Andhra+Pradesh',
       accentColor: '#650C18',
       backdropTint: '#FFF8E8',
