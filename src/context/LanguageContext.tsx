@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { WeddingData, weddingData } from '../data/weddingData';
+import weddingMandapImg from '../assets/images/wedding_mandap_couple.jpg';
+import receptionSofaImg from '../assets/images/reception_sofa_couple.jpg';
 
 export type Language = 'en' | 'te';
 
@@ -61,7 +63,7 @@ export const teluguWeddingData: WeddingData = {
       venue: 'గండి ఆంజనేయ స్వామి దేవస్థానం',
       description:
         'వేద మంత్రోచ్ఛారణలు, నాదస్వర మంగళ ధ్వనులు, కాశీ యాత్ర, జీలకర్ర-బెల్లం మరియు పవిత్ర మాంగళ్య ధారణ మహోత్సవం.',
-      image: '/src/assets/images/wedding_mandap_couple.jpg',
+      image: weddingMandapImg,
       imageAlt: 'వధూవరుల హస్తమేళాపం మరియు పవిత్ర మాంగళ్య ధారణం',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gandi+Anjaneya+Swamy+Temple',
       accentColor: '#8C1423',
@@ -76,7 +78,7 @@ export const teluguWeddingData: WeddingData = {
       venue: 'తరిమెల (స్వగృహం)',
       description:
         'నూతన దంపతులను మనసారా ఆశీర్వదించి, సాంప్రదాయ అరటి ఆకు విందును ఆరగించి మమ్మల్ని ఆనందింపజేయవలసిందిగా కోరుచున్నాము.',
-      image: '/src/assets/images/reception_sofa_couple.jpg',
+      image: receptionSofaImg,
       imageAlt: 'స్వగృహంలో సాంప్రదాయ ఆశీర్వాద విందు వేదిక',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Tarimela+Village+Andhra+Pradesh',
       accentColor: '#B88635',

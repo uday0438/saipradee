@@ -104,7 +104,7 @@ export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, 
 
             <div className="flex items-center gap-3">
               <span className="font-display text-xs tracking-widest text-[#F2D27A] bg-black/30 px-2.5 py-1 rounded-full border border-[#D6A64B]/40">
-                {currentIndex + 1} / {SPECIAL_PHOTOS.length}
+                {currentIndex + 1} / {photos.length}
               </span>
 
               <button
@@ -136,7 +136,7 @@ export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, 
             {/* Previous Arrow */}
             <button
               type="button"
-              onClick={() => setCurrentIndex((prev) => (prev - 1 + SPECIAL_PHOTOS.length) % SPECIAL_PHOTOS.length)}
+              onClick={() => setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length)}
               aria-label="Previous photograph"
               className="absolute left-2 sm:left-4 z-20 p-2 sm:p-3 rounded-full bg-black/60 text-[#FFF8E8] border border-[#D6A64B]/70 hover:bg-[#650C18] hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-lg"
             >
@@ -146,7 +146,7 @@ export const SpecialPhotosModal: React.FC<SpecialPhotosModalProps> = ({ isOpen, 
             {/* Next Arrow */}
             <button
               type="button"
-              onClick={() => setCurrentIndex((prev) => (prev + 1) % SPECIAL_PHOTOS.length)}
+              onClick={() => setCurrentIndex((prev) => (prev + 1) % photos.length)}
               aria-label="Next photograph"
               className="absolute right-2 sm:right-4 z-20 p-2 sm:p-3 rounded-full bg-black/60 text-[#FFF8E8] border border-[#D6A64B]/70 hover:bg-[#650C18] hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-lg"
             >

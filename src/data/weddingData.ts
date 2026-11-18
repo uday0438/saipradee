@@ -1,3 +1,6 @@
+import weddingMandapImg from '../assets/images/wedding_mandap_couple.jpg';
+import receptionSofaImg from '../assets/images/reception_sofa_couple.jpg';
+
 export interface CelebrationEvent {
   id: 'haldi' | 'mehendi' | 'wedding' | 'reception';
   title: string;
@@ -135,7 +138,7 @@ export const weddingData: WeddingData = {
       venue: 'Gandi Anjaneya Swamy Temple',
       description:
         'Vedic hymns, Nadaswaram melodies, Kashi Yatra, Jeelakarra Bellam, and the sacred tying of the Mangalsutra.',
-      image: '/src/assets/images/wedding_mandap_couple.jpg',
+      image: weddingMandapImg,
       imageAlt: 'Sacred Vivaha ceremony of Pradeep and Sai Sree at the holy mandapam',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gandi+Anjaneya+Swamy+Temple',
       accentColor: '#8C1423',
@@ -150,7 +153,7 @@ export const weddingData: WeddingData = {
       venue: 'Tarimela (At Home)',
       description:
         'An afternoon gathering with traditional banana-leaf feast and heartfelt blessings for the newlyweds.',
-      image: '/src/assets/images/reception_sofa_couple.jpg',
+      image: receptionSofaImg,
       imageAlt: 'Pradeep and Sai Sree in royal attire on golden sofa for the wedding reception',
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Tarimela+Village+Andhra+Pradesh',
       accentColor: '#650C18',
